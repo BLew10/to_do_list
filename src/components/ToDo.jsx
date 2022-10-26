@@ -1,0 +1,27 @@
+import React, { useState } from 'react'
+
+const ToDo = (props) => {
+
+    // const [list, setList] = useState([...props.list])
+
+    const deleteItem = (e) => {
+        props.deleteItem(e.target.value)
+    }
+
+
+    return (
+        <div>
+            <h1>To Do List</h1>
+            <ul>
+                {props.list.map(item => {
+                    return (<li className='flex justify-around w-1/5 mx-auto items-center'>
+                        <div className='flex justify-start w-full mx-auto items-center'>{item}<input type="checkbox" className='ml-2' /> </div>
+                        <button className='bg-cyan-300 p-2 rounded text-white font-bold hover:bg-cyan-500' onClick={deleteItem} value={item}>Delete</button>
+                    </li>)
+                })}
+            </ul>
+        </div>
+    )
+}
+
+export default ToDo

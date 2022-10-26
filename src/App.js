@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import ToDo from './components/ToDo';
+import AddItemForm from './components/AddItemForm';
+import React, { useState } from 'react';
 
 function App() {
+  const [toDos, setToDos] = useState([])
+
+  const addItem = (item) => {
+    setToDos([item, ...toDos])
+  }
+  const deleteItem = (targetItem) => {
+    setToDos(toDos.filter(item => item !== targetItem ))
+}
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddItemForm addItem={addItem} />
+      <ToDo list={toDos} deleteItem ={deleteItem}/>
     </div>
   );
 }
